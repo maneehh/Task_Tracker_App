@@ -72,7 +72,7 @@
     {
         if (string.IsNullOrWhiteSpace(_TaskContent))
         {
-            ErrorMessage = "Task must not be empty!";
+            ErrorMessage = "Task must not be empty!"; //Error message when task content is empty
             return;
         }
 
@@ -81,8 +81,8 @@
             var task = new Models.Task { Content = _TaskContent };
             using (var dbFactory = DbFactory.CreateDbContext())
             {
-                dbFactory.Tasks.Add(task);
-                dbFactory.SaveChanges();
+                dbFactory.Tasks.Add(task); //Addthe new task to the database
+                dbFactory.SaveChanges(); //Save changes in the database
             }
             LoadTasks();
         }
@@ -120,14 +120,14 @@
 
     private void Edit(Models.Task task)
     {
-        _Task = task;
+        _Task = task; //Set the task that will be edited
         _TaskContent = task.Content;
         ErrorMessage = string.Empty;
     }
 
     private void ConfirmDelete(Models.Task task)
     {
-        _Task = task;
+        _Task = task; //Set the task to be deleted
         ShowConfirmDeleteOption = true;
     }
 
